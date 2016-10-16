@@ -358,7 +358,7 @@ function drawCube(texture) {
                   gl.UNSIGNED_SHORT, 0);
 }
 
-function drawTable(offset){
+function drawGoal(offset){
   for (var i=-1; i<=1; i+=2) {
     for (var j= -1; j<=1; j+=2) {
       pushModelViewMatrix(); 
@@ -412,13 +412,13 @@ function draw() {
   pushModelViewMatrix();
   mat4.translate(pwgl.modelViewMatrix, [0.0, 1.1, 0.0], pwgl.modelViewMatrix);
   uploadModelViewMatrixToShader();
-  drawTable(6.4);
+  drawGoal(6.4);
   popModelViewMatrix();
 
   pushModelViewMatrix();
   mat4.translate(pwgl.modelViewMatrix, [0.0, 1.1, 0.0], pwgl.modelViewMatrix);
   uploadModelViewMatrixToShader();
-  drawTable(-6.4);
+  drawGoal(-6.4);
   popModelViewMatrix();
   
   // // Draw box on top of the table
