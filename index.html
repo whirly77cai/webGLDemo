@@ -1,0 +1,43 @@
+﻿<!DOCTYPE HTML> 
+<html lang="en"> 
+<head>
+<title>Listing 5-1, Using Textures on Floor, Table and Box.</title>
+<script src="webgl-debug.js"></script>
+<script type="text/javascript" src="glMatrix.js"></script>
+<script src="webgl-utils.js"></script>
+
+<meta charset="utf-8"> 
+<script id="shader-vs" type="x-shader/x-vertex">
+  attribute vec3 aVertexPosition;
+  attribute vec2 aTextureCoordinates;
+  
+  uniform mat4 uMVMatrix;
+  uniform mat4 uPMatrix;
+  
+  varying vec2 vTextureCoordinates;
+  
+  void main() {
+    gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+    vTextureCoordinates = aTextureCoordinates;  
+  }                
+</script>
+
+<script id="shader-fs" type="x-shader/x-fragment">
+  precision mediump float;
+  
+  varying vec2 vTextureCoordinates;
+  uniform sampler2D uSampler;
+  void main() {
+    gl_FragColor = texture2D(uSampler, vTextureCoordinates);
+  } 
+</script>
+
+<script src="script.js"></script>
+
+</head>
+
+<body onload="startup();">
+  <canvas id="myGLCanvas" width="800" height="340"></canvas>
+</body>
+
+</html>
